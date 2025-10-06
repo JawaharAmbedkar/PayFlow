@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import User from "./User.jsx";
+import { API_URL } from "../../config.js";
 
 export const Users = () => {
   const [users, setUsers] = useState([]);
@@ -22,7 +23,7 @@ export const Users = () => {
         const token = localStorage.getItem("token"); // get token
 
         const response = await axios.get(
-          `http://localhost:3000/api/v1/user/bulk?filter=${debouncedFilter}`,
+          `${API_URL}/api/v1/user/bulk?filter=${debouncedFilter}`,
           {
             headers: {
               Authorization: `Bearer ${token}`, // ✅ send token

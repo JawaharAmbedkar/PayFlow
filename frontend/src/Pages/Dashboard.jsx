@@ -4,6 +4,7 @@ import { Balance } from "../components/Balance";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Footer } from "../components/Footer";
+import { API_URL } from "../../config";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ export const Dashboard = () => {
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:3000/api/v1/user/me", {
+      const res = await fetch(`${API_URL}/api/v1/user/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUser(await res.json());
@@ -29,7 +30,7 @@ export const Dashboard = () => {
     const fetchTransactions = async () => {
       const token = localStorage.getItem("token");
       const res = await fetch(
-        `http://localhost:3000/api/v1/transaction?page=${txPage}&limit=10`,
+        `${API_URL}/api/v1/transaction?page=${txPage}&limit=10`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       const data = await res.json();
@@ -44,7 +45,7 @@ export const Dashboard = () => {
     const token = localStorage.getItem("token");
     if (window.confirm("Are you sure you want to delete this transaction?")) {
       try {
-        await axios.delete(`http://localhost:3000/api/v1/transaction/${txId}`, {
+        await axios.delete(`${API_URL}/api/v1/transaction/${txId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setTx((prev) => prev.filter((t) => t._id !== txId));

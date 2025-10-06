@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Appbar } from "../components/Appbar";
 import { Footer } from "../components/Footer";
+import { API_URL } from "../../config";
 
 export const TransferMoney = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ export const TransferMoney = () => {
     const fetchUsers = async () => {
       const token = localStorage.getItem("token");
       const res = await fetch(
-        `http://localhost:3000/api/v1/user/bulk?page=${usersPage}&limit=10&filter=${search}`,
+        `${API_URL}/api/v1/user/bulk?page=${usersPage}&limit=10&filter=${search}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       const data = await res.json();

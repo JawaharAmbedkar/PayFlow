@@ -5,6 +5,7 @@ import axios from "axios";
 import "../components/styles/loading.css";
 import { Appbar } from "../components/Appbar";
 import { Footer } from "../components/Footer";
+import { API_URL } from "../../config";
 
 export const SendMoney = () => {
   const [searchParams] = useSearchParams();
@@ -20,7 +21,7 @@ export const SendMoney = () => {
   useEffect(() => {
     const fetchBalance = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3000/api/v1/account/balance", {
+        const { data } = await axios.get(`${API_URL}/api/v1/account/balance`, {
           headers: { Authorization: "Bearer " + localStorage.getItem("token") },
         });
         setBalance(data.balance);
@@ -53,7 +54,7 @@ export const SendMoney = () => {
     setLoading(true);
     try {
       await axios.post(
-        "http://localhost:3000/api/v1/account/transfer",
+        `${API_URL}/api/v1/account/transfer`,
         { to: id, amount: Number(amount)  },
         { headers: { Authorization: "Bearer " + localStorage.getItem("token") } }
       );

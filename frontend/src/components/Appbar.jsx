@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { API_URL } from "../../config";
 
 export function Appbar() {
   const [user, setUser] = useState(null);
@@ -11,7 +12,7 @@ export function Appbar() {
       const token = localStorage.getItem("token");
       if (!token) return;
       try {
-        const res = await fetch("http://localhost:3000/api/v1/user/me", {
+        const res = await fetch(`${API_URL}/api/v1/user/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
