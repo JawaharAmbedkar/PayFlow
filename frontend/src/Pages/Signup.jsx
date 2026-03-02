@@ -53,7 +53,7 @@ export const Signup = () => {
           <InputBox label="First Name" placeholder="John" onChange={(e) => setFirstName(e.target.value)} />
           <InputBox label="Last Name" placeholder="Doe" onChange={(e) => setLastName(e.target.value)} />
           <InputBox label="Email" placeholder="harkirat@gmail.com" onChange={(e) => setUsername(e.target.value)} />
-          <PasswordInput label="Password" placeholder="••••••" onChange={(e) => setPassword(e.target.value)} />
+          <PasswordInput label="Password" type="password" placeholder="••••••" onChange={(e) => setPassword(e.target.value)} />
           {error && <div className="text-red-500 mb-2 text-center">{error}</div>}
           <Button onClick={handleSignup} label="Sign up" loading={loading} />
           <BottomWarning label="Already have an account?" buttonText="Sign in" to="/signin" />
