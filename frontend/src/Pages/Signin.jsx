@@ -47,7 +47,7 @@ export const Signin = () => {
           <Heading label="Sign in" />
           <SubHeading label="Enter your credentials to access your account" />
           <InputBox label="Email" placeholder="harkirat@gmail.com" onChange={(e) => setUsername(e.target.value)} />
-          <PasswordInput label="Password" placeholder="••••••" onChange={(e) => setPassword(e.target.value)} />
+          <PasswordInput label="Password" type="password" placeholder="••••••" onChange={(e) => setPassword(e.target.value)} />
           {error && <div className="text-red-500 mb-2 text-center">{error}</div>}
           <Button onClick={handleSignIn} label="Sign in" loading={loading} />
           <BottomWarning label="Don't have an account?" buttonText="Sign up" to="/signup" />
